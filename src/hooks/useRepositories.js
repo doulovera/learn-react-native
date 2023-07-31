@@ -7,12 +7,10 @@ export const useRepositories = () => {
 
   const fetchRepositories = async () => {
     try {
-      console.log(BASE_URL + '/api/repositories')
       const response = await fetch(BASE_URL + '/api/repositories')
       const json = await response.json()
 
       const repositoriesNodes = json ? json.edges.map((edge) => edge.node) : []
-      console.log(repositoriesNodes)
       setRepositories(repositoriesNodes)
     } catch (error) {
       console.log(error)

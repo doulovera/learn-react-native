@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image, Button, Linking } from 'react-native'
 import { RepositoryStats } from './RepositoryStats'
 
 import StyledText from './StyledText'
@@ -18,10 +18,17 @@ const RepositoryItemHeader = ({ ownerAvatarUrl, fullName, description, language 
 )
 
 export const RepositoryItem = ({ repo }) => {
+  const handlePress = () => {
+    Linking.canOpenURL(`https://github.com/${repo.fullName}`)
+  }
+
   return (
     <View key={repo.id} style={styles.container}>
       <RepositoryItemHeader {...repo} />
       <RepositoryStats {...repo} />
+      <View style={{ marginTop: 20 }}>
+        <Button title='View on GitHub' color='#444' onPress={handlePress} />
+      </View>
     </View>
   )
 }
